@@ -47,11 +47,10 @@ Answer the Question
     ${answer_option_D}   Get text   ((//*[@class="yo-multiple-choice-question__options"])[${question_number}]//span)[7]
     ${answer_option_E}   Get text   ((//*[@class="yo-multiple-choice-question__options"])[${question_number}]//span)[9]
 
-    # commented out lines are for the text-davinci-003 which has lower performance than gtp-3.5-turbo. 
+    # commented out 4 lines are for the text-davinci-003 which has lower performance than gtp-3.5-turbo. 
     #${resp}   Completion Create    
     #...    prompt=${question}. A=${answer_option_A}, B=${answer_option_B}, C=${answer_option_C}, D=${answer_option_D}, E=${answer_option_E}. Vastaa vain oikean vastauksen kirjaimella A, B, C, D tai E ilman mitään muuta tekstiä.
     #...    temperature=1.7
-
     #Click    (((//*[@class="yo-multiple-choice-question__options"])[${question_number}])[1]//*[@class="ChoiceContainerstyles__ChoiceButtonContainer-sc-11i5r05-0 kvKlsK"])[${results}[${resp}[0]]]
 
     # following 3 lines to use ChatGPT gpt-3.5-turbo which performs better. 
@@ -59,6 +58,7 @@ Answer the Question
     ...    user_content=${question}. A=${answer_option_A}, B=${answer_option_B}, C=${answer_option_C}, D=${answer_option_D}, E=${answer_option_E}. Vastaa vain oikean vastauksen kirjaimella A, B, C, D tai E ilman mitään muuta tekstiä. Pelkkä yksi kirjain.
     ...    temperature=0.2
     ${resp}   Strip String    ${resp}
+    
     Log To Console    ${resp}
 
     Click    (((//*[@class="yo-multiple-choice-question__options"])[${question_number}])[1]//*[@class="ChoiceContainerstyles__ChoiceButtonContainer-sc-11i5r05-0 kvKlsK"])[${results}[${resp}]]
