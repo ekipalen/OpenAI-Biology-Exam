@@ -55,10 +55,12 @@ Answer the Question
 
     # following 3 lines to use ChatGPT gpt-3.5-turbo which performs better. 
     ${resp}   ${conversation}   Chat Completion Create   
+    #...    model='gpt-4-0314,
+    #...    model='gpt-4',
     ...    user_content=${question}. A=${answer_option_A}, B=${answer_option_B}, C=${answer_option_C}, D=${answer_option_D}, E=${answer_option_E}. Vastaa vain oikean vastauksen kirjaimella A, B, C, D tai E ilman mitään muuta tekstiä. Pelkkä yksi kirjain.
-    ...    temperature=0.2
+    ...    temperature=0.1
     ${resp}   Strip String    ${resp}
-    
+
     Log To Console    ${resp}
 
     Click    (((//*[@class="yo-multiple-choice-question__options"])[${question_number}])[1]//*[@class="ChoiceContainerstyles__ChoiceButtonContainer-sc-11i5r05-0 kvKlsK"])[${results}[${resp}]]
