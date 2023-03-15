@@ -19,11 +19,10 @@ Finnish national upper secondary schools exam
     Authorize to ChatGPT
     Open Browser and accept cookies
     Select and start the Exam
-    WHILE    ${question_number} <= ${10}
+    WHILE    ${question_number} <= ${9}
         Answer the Question   ${question_number}
         ${question_number}  Evaluate    ${question_number}+1
     END
-    Log To Console    ${results}[A]
     Sleep    25
 
 *** Keywords ***
@@ -53,7 +52,7 @@ Answer the Question
 
     ${resp}   ${conversation}   Chat Completion Create   
     ...    user_content=${question}: A=${answer_option_A}, B=${answer_option_B}, C=${answer_option_C}, D=${answer_option_D}, E=${answer_option_E}. Vastaa vain oikean vastauksen kirjaimella A, B, C, D tai E ilman mitään muuta tekstiä. Pelkkä yksi kirjain.
-    ...    temperature=0.5
+    ...    temperature=0.2
     ${resp}   Strip String    ${resp}
 
     Log To Console    ${resp}
